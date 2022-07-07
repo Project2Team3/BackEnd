@@ -19,7 +19,7 @@ public class UserController {
 
     // DB -> DAO -> Service -> Controller... Such a Pain
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -31,14 +31,14 @@ public class UserController {
         return userService.getAllUser();
     }
 
-    @GetMapping("/{id}")
-    public User findUserById(@PathVariable("id") int id) {
-        Optional<User> user = userService.getById(id);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get()).getBody();
-        }
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT).getBody();
-    }
+//    @GetMapping("/{id}")
+//    public User findUserById(@PathVariable("id") int id) {
+//        Optional<User> user = userService.getById(id);
+//        if (user.isPresent()) {
+//            return ResponseEntity.ok(user.get()).getBody();
+//        }
+//        return new ResponseEntity<User>(HttpStatus.NO_CONTENT).getBody();
+//    }
 
     @PostMapping
     public User registerUser(User newUser) {

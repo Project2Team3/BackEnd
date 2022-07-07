@@ -24,7 +24,7 @@ public class AuthController {
     // Post to avoid showing the password
     @PostMapping
     public ResponseEntity<User> login(@Valid @RequestBody Credentials credentials){
-        User user = userService.processLogin(credentials.getUsername(), credentials.getPassword());
+        User user = userService.authenticate(credentials);
         if (user == null ){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {

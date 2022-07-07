@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Trivia Application </title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./css/indexStyle.css" />
+        <link rel="stylesheet" href="./css/globalStyle.css" />
+    </head>
+    <body>
+        <div class="formCard">
+            <div class="loginFormContainer">
+                <h4>LOGIN</h4>
+<!--                <form method="post" action="login" id="loginForm">-->
+                <form id="loginForm">
+                    <label>
+                        Username:<br />
+                        <input
+                            type="text"
+                            name="username"
+                            maxlength="50"
+                            required
+                        />
+                        <br />
+                    </label>
+                    <label>
+                        Password:<br />
+                        <input
+                            type="password"
+                            name="password"
+                            maxlength="50"
+                            required
+                        />
+                    </label>
+                    <div class="inputSubmit">
+                        <input type="submit" value="LOGIN" />
+                    </div>
+                </form>
+                <div class="formSwitch">
+                    <p>
+                        Need An Account?
+                        <button id="register"><i>Register!</i></button>
+                    </p>
+                </div>
+            </div>
+            <div class="registerFormContainer inactive">
+                <h4>REGISTER</h4>
+<!--                <form method="post" action="register" id="registerForm">-->
+                <form id="registerForm">
+                    <label>
+                        First Name:<br />
+                        <input
+                            type="text"
+                            name="firstname"
+                            maxlength="100"
+                            required
+                        />
+                        <br />
+                    </label>
+                    <label>
+                        Last Name:<br />
+                        <input
+                            type="text"
+                            name="lastname"
+                            maxlength="100"
+                            required
+                        />
+                        <br />
+                    </label>
+                    <label>
+                        Username:<br />
+                        <input
+                            type="text"
+                            name="username"
+                            maxlength="50"
+                            required
+                        />
+                        <br />
+                    </label>
+                    <label>
+                        Password:<br />
+                        <input
+                            type="password"
+                            name="password"
+                            maxlength="50"
+                            required
+                        />
+                    </label>
+                    <div class="inputSubmit">
+                        <input type="submit" value="REGISTER" />
+                    </div>
+                </form>
+                <div class="formSwitch">
+                    <p>
+                        Already A User?
+                        <button id="login"><i>Login!</i></button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+            crossorigin="anonymous"
+        ></script>
+        <script src="./js/indexController.js"></script>
+    </body>
+</html>
