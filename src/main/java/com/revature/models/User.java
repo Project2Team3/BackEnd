@@ -1,13 +1,11 @@
 package com.revature.models;
 
 
-import com.revature.util.RegexUtil;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -27,7 +25,7 @@ public class User {
     @Length(min=2)
     private String username;
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$")
+//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$")
     @Column(nullable = false)
     private String password;
 
@@ -37,11 +35,9 @@ public class User {
     @Column(nullable = false)
     private int points;
 
-
-
-//    @Pattern(regexp = RegexUtil.EMAIL_REGEX)
-//    @Column(nullable = false, unique = true)
-//    private String email;
+    @Email
+    @Column(unique = true)
+    private String email;
 
 //    @Column(name = "register_datetime", updatable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 //    private LocalDateTime registerDateTime;
