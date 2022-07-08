@@ -8,7 +8,6 @@ public class BackEndApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BackEndApplication.class, args);
-        // https://opentdb.com/api.php?amount=10&category=20&difficulty=hard&type=multiple
     }
 
 }
