@@ -44,11 +44,4 @@ public class User {
 
 //    @Enumerated(EnumType.STRING)
 //    private UserRole role;
-
-
-
-//    public static void main(String[] args) {
-//        User user = new User(5);
-//        System.out.println(user.getId());
-//    }
 }
