@@ -61,6 +61,10 @@ public class UserService {
         } else {
             return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found with id " + id));
         }
+    }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void update(User u) {
+        userRepository.save(u);
     }
 }
