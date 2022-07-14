@@ -1,11 +1,16 @@
 package com.revature.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.revature.data.UserRepository;
+import com.revature.service.UserService;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,10 +19,11 @@ import javax.validation.constraints.Email;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "friendsList" })
 public class User {
 
     @Id
-    @Column(name="user_id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -25,7 +31,6 @@ public class User {
     @Length(min=2)
     private String username;
 
-//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$")
     @Column(nullable = false)
     private String password;
 
@@ -38,10 +43,4 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
-
-//    @Column(name = "register_datetime", updatable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-//    private LocalDateTime registerDateTime;
-
-//    @Enumerated(EnumType.STRING)
-//    private UserRole role;
 }
