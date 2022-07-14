@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +24,6 @@ public class UserService {
 
     @Autowired
     public UserService(UserRepository userRepository) {
-        super();
         this.userRepository = userRepository;
     }
 
@@ -61,10 +61,5 @@ public class UserService {
         } else {
             return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found with id " + id));
         }
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void update(User u) {
-        userRepository.save(u);
     }
 }

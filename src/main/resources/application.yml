@@ -8,6 +8,7 @@ spring:
     name: project2backend
   datasource:
     url: jdbc:postgresql://project2team3.cbvxzziohfzl.us-east-1.rds.amazonaws.com:5432/postgres
+#    url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -15,7 +16,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 management:
   endpoints:

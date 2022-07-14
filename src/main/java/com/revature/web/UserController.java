@@ -46,9 +46,4 @@ public class UserController {
     public void removeUser(@PathVariable("id") int id) {
         userService.remove(id);
     }
-
-    @PutMapping("/update")
-    public void updateUser(@Valid @RequestBody User u) {
-        userService.update(u);
-    }
 }
