@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -28,18 +29,28 @@ public class UserService {
     }
 
     public User authenticate(Credentials credentials) {
-        return userRepository.findUserByUsernameAndPassword(credentials.getUsername(), credentials.getPassword())
-                .orElseThrow(AuthenticationException::new);
+    	Optional<User>user = userRepository.findUserByUsernameAndPassword(credentials.getUsername(),credentials.getPassword());
+    	user.orElseThrow(AuthenticationException::new);
+    	logger.info("User Found! " +user.get().getUsername());
+    	return user.get();
     }
 
     @Transactional(readOnly = true)
     public Set<User> findAll() {
+    	
+
+    	logger.info("Found all users");
+    	
         return new HashSet<>(userRepository.findAll());
+        
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public User add(User u) {
-        return userRepository.save(u);
+    	
+    	logger.info("User added!: " + u.getUsername() +" " +u.getPassword());
+    	
+        return u;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -58,6 +58,8 @@ public class FriendService {
         User currentUser = new User();
         if (currentUserOptional.isPresent()) {
             currentUser = currentUserOptional.get();
+            
+            
         }
 
         List<Friend> friendsByFirstUser = friendRepository.findByFirstUser(currentUser);
