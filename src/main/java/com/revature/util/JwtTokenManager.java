@@ -13,42 +13,21 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 
-@Component // we declare it as a Spring Bean (object managed by the Spring IoC container)
+@Component
 public class JwtTokenManager {
 
-    private final Key key; // from java.security
-    private final Logger logger = LoggerFactory.getLogger(JwtTokenManager.class);
-
+    private final Key key;
+    
     public JwtTokenManager(){
-        // what is a key?
-        // a set of public keys used to verify a token and have it be parsed by our server
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
-    // this builds the payload which is encrypted info about the user we're authenticating
     public String issueToken(User user){
-        return Jwts.builder() // io.jsonwebtoken
-                // payload
+        return Jwts.builder()
                 .setId(String.valueOf(user.getId()))
                 .setSubject(user.getUsername())
-                .setIssuer("Trivia API") // the source that generated the token
+                .setIssuer("Trivia API")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .signWith(key).compact();
     }
-
-    public int parseUserIdFromToken(String token){
-
-        try {
-            return Integer.parseInt(Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
-                    // this is the way in which we can READ user data from a token
-                    .parseClaimsJws(token).getBody().getId());
-
-        } catch (Exception e){
-            logger.warn("JWT error parsing user id from token");
-            throw new AuthenticationException("Unable to parse user id from JWT. Please sign in again");
-        }
-    }
-
 }

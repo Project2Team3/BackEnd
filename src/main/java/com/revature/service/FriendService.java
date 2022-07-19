@@ -4,6 +4,8 @@ import com.revature.data.FriendRepository;
 import com.revature.data.UserRepository;
 import com.revature.models.Friend;
 import com.revature.models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class FriendService {
     private final UserRepository userRepository;
     private final FriendRepository friendRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     public FriendService(UserRepository userRepository, FriendRepository friendRepository) {
         this.userRepository = userRepository;
@@ -25,10 +29,10 @@ public class FriendService {
 
         Friend friend = new Friend();
         if (currentUserId <= 0 || friendId <= 0) {
-            System.out.println("Id must be greater than 0");
+            logger.error("ID must be greater than 0");
             return;
         } else if (currentUserId == friendId) {
-            System.out.println("You cannot befriend yourself");
+            logger.error("You cannot befriend yourself");
             return;
         }
         Optional<User> currentUserOptional = userRepository.findById(currentUserId);
@@ -49,6 +53,7 @@ public class FriendService {
             friend.setFirstUser(firstUser);
             friend.setSecondUser(secondUser);
             friendRepository.save(friend);
+            logger.info("Friend Added Successfully");
         }
     }
 
@@ -72,6 +77,7 @@ public class FriendService {
             Optional<User> firstUser = userRepository.findById(friend.getFirstUser().getId());
             firstUser.ifPresent(friendUsers::add);
         }
+        logger.info("All friends retrieved");
         return friendUsers;
 
     }

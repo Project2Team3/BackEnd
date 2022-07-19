@@ -3,7 +3,6 @@ package com.revature.web;
 import com.revature.models.User;
 import com.revature.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +30,4 @@ public class FriendController {
         friendService.saveFriend(currentUserId, friendId);
         return ResponseEntity.ok("Friend added successfully");
     }
-
-
 }

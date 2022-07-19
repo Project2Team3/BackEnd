@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data 
 @NoArgsConstructor
 @AllArgsConstructor
-public class Credentials { // use in our controller layer
+public class Credentials {
 
 	@NotNull
 	@NotBlank

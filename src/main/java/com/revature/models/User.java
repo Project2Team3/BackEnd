@@ -19,9 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "friendsList" })
 public class User {
-
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

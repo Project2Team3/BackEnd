@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin(origins="*", allowedHeaders="*")
 @RequestMapping("/login")
 public class AuthController {
-	
 	private final UserService userService;
 	private final JwtTokenManager tokenManager;
 	

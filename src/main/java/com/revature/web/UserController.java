@@ -22,22 +22,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping // return all users by sending a GET request to http://localhost:5000/api/users
+    @GetMapping
     public ResponseEntity<Set<User>> getAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @PostMapping("/add") // http://localhost:5000/api/users/add
+    @PostMapping("/add")
     public ResponseEntity<User> addUser(@Valid @RequestBody User u) {
         return  ResponseEntity.ok(userService.add(u));
     }
 
-    @GetMapping("/{id}") // allows the client to send the request http://localhost:5000/api/users/2
+    @GetMapping("/{id}")
     public ResponseEntity<User> findUserById(@PathVariable("id") int id) {
         return ResponseEntity.ok(userService.getById(id));
     }
 
-    @GetMapping("/find/{username}") // allows the client to send the request http://localhost:5000/api/users/thehulk
+    @GetMapping("/find/{username}")
     public ResponseEntity<User> findUserByUsername(@PathVariable("username") String username) {
         return ResponseEntity.ok(userService.getByUsername(username));
     }
