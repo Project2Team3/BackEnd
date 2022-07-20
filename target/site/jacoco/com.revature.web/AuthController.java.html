@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BackEnd</a> &gt; <a href="index.source.html" class="el_package">com.revature.web</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">package com.revature.web;
+
+import com.revature.dto.Credentials;
+import com.revature.models.User;
+import com.revature.service.UserService;
+import com.revature.util.JwtTokenManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+
+@RestController
+@CrossOrigin(origins=&quot;*&quot;, allowedHeaders=&quot;*&quot;)
+@RequestMapping(&quot;/login&quot;)
+public class AuthController {
+	
+	private final UserService userService;
+	private final JwtTokenManager tokenManager;
+	
+	@Autowired
+	public AuthController(UserService userService, JwtTokenManager tokenManager) {
+<span class="fc" id="L22">		super();</span>
+<span class="fc" id="L23">		this.userService = userService;</span>
+<span class="fc" id="L24">		this.tokenManager = tokenManager;</span>
+<span class="fc" id="L25">	}</span>
+
+	@PostMapping
+	public User login(@RequestBody Credentials credentials, HttpServletResponse response) {
+		
+<span class="nc" id="L30">		User user = userService.authenticate(credentials);</span>
+		
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if (user != null) {</span>
+<span class="nc" id="L33">			String token = tokenManager.issueToken(user);</span>
+			
+<span class="nc" id="L35">			response.addHeader(&quot;user-token&quot;, token);</span>
+<span class="nc" id="L36">			response.addHeader(&quot;Access-Control-Expose-Headers&quot;, &quot;user-token&quot;);</span>
+<span class="nc" id="L37">			response.setStatus(200);</span>
+			
+<span class="nc" id="L39">			return user;</span>
+		} else {
+<span class="nc" id="L41">			response.setStatus(401);</span>
+<span class="nc" id="L42">			return null;</span>
+		}
+	}	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

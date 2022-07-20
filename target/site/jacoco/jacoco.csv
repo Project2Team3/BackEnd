@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+BackEnd,com.revature.web,AuthController,30,9,2,0,9,4,2,1,1,1
+BackEnd,com.revature.web,FriendController,14,6,0,0,3,3,2,1,2,1
+BackEnd,com.revature.web,UserController,28,6,0,0,6,3,5,1,5,1
+BackEnd,com.revature.models,User,0,103,0,0,0,10,0,15,0,15
+BackEnd,com.revature.models,Friend,55,3,0,0,6,1,8,1,8,1
+BackEnd,com.revature,BackEndApplication,9,3,0,0,3,1,1,1,1,1
+BackEnd,com.revature.dto,Credentials,120,15,22,0,2,3,18,3,7,3
+BackEnd,com.revature.service,FriendService,168,9,20,0,38,4,12,1,2,1
+BackEnd,com.revature.service,UserService,24,70,0,2,0,16,2,8,2,7
+BackEnd,com.revature.util,JwtTokenManager,42,11,0,0,13,4,2,1,2,1
+BackEnd,com.revature.exceptions,AuthenticationException,8,0,0,0,4,0,2,0,2,0
+BackEnd,com.revature.exceptions,UserNotFoundException,0,4,0,0,0,2,0,1,0,1

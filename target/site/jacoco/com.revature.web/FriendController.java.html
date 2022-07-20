@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FriendController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BackEnd</a> &gt; <a href="index.source.html" class="el_package">com.revature.web</a> &gt; <span class="el_source">FriendController.java</span></div><h1>FriendController.java</h1><pre class="source lang-java linenums">package com.revature.web;
+
+import com.revature.models.User;
+import com.revature.service.FriendService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins=&quot;*&quot;, allowedHeaders=&quot;*&quot;)
+@RequestMapping(&quot;/friends&quot;)
+public class FriendController {
+
+    private final FriendService friendService;
+
+    @Autowired
+<span class="fc" id="L20">    public FriendController(FriendService friendService) {</span>
+<span class="fc" id="L21">        this.friendService = friendService;</span>
+<span class="fc" id="L22">    }</span>
+
+    @GetMapping(&quot;&quot;)
+    public ResponseEntity&lt;List&lt;User&gt;&gt; getFriends(@RequestParam(&quot;currentUserId&quot;)int currentUserId) {
+<span class="nc" id="L26">        return ResponseEntity.ok(friendService.getFriends(currentUserId));</span>
+    }
+
+    @GetMapping(&quot;add&quot;)
+    public ResponseEntity&lt;?&gt; addUser(@RequestParam(&quot;currentUserId&quot;) int currentUserId, @RequestParam(&quot;friendId&quot;) int friendId) {
+<span class="nc" id="L31">        friendService.saveFriend(currentUserId, friendId);</span>
+<span class="nc" id="L32">        return ResponseEntity.ok(&quot;Friend added successfully&quot;);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
