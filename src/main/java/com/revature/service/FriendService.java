@@ -25,15 +25,15 @@ public class FriendService {
         this.userRepository = userRepository;
         this.friendRepository = friendRepository;
     }
-    public void saveFriend(int currentUserId, int friendId){
+    public Integer saveFriend(int currentUserId, int friendId){
 
         Friend friend = new Friend();
         if (currentUserId <= 0 || friendId <= 0) {
             logger.error("ID must be greater than 0");
-            return;
+            return 0;
         } else if (currentUserId == friendId) {
             logger.error("You cannot befriend yourself");
-            return;
+            return 0;
         }
         Optional<User> currentUserOptional = userRepository.findById(currentUserId);
         Optional<User> friendUserOptional = userRepository.findById(friendId);
@@ -49,12 +49,15 @@ public class FriendService {
             }
         }
 
+
         if( !(friendRepository.existsByFirstUserAndSecondUser(firstUser,secondUser)) ){
             friend.setFirstUser(firstUser);
             friend.setSecondUser(secondUser);
             friendRepository.save(friend);
             logger.info("Friend Added Successfully");
+            return friendId;
         }
+        return 0;
     }
 
     public List<User> getFriends(int currentUserId){
