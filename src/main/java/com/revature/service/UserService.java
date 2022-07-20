@@ -34,11 +34,14 @@ public class UserService {
         logger.info("User Found! " +user.get().getUsername());
         return user.get();
     }
+    
 
     @Transactional(readOnly = true)
     public Set<User> findAll() {
         return new HashSet<>(userRepository.findAll());
     }
+    
+    
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public User add(User u) {
@@ -62,7 +65,8 @@ public class UserService {
             logger.warn("Id cannot be <= 0. Id passed was: {}", id);
             return null;
         } else {
-            return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found with id " + id));
+            return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found with id " +id));
         }
     }
 }
+
