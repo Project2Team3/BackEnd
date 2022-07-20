@@ -40,7 +40,6 @@
 			<version>2.6.2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -81,8 +80,7 @@
 			<version>0.11.2</version>
 			<scope>runtime</scope>
 		</dependency>
-
-
+  
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
